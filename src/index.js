@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import {rootReducer} from './redux/rootReducer';
 import './style.css';
+import './metrics/index'
 
 const store = createStore(
   rootReducer,

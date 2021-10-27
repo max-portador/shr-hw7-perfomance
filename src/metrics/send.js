@@ -3,14 +3,14 @@
  *
  * @type {Number}
  */
-var MAX_BATCH_COUNTERS = 42;
+const MAX_BATCH_COUNTERS = 42;
 
 /**
  * Интервал в миллисекундах, в течение которого счётчики склеиваются
  *
  * @type {Number}
  */
-var COUNTERS_BATCH_TIMEOUT = 15;
+const COUNTERS_BATCH_TIMEOUT = 15;
 
 function Counter() {
 	this.guid = '';
@@ -60,7 +60,7 @@ Counter.prototype.send = function(name, value) {
     	this._indexes[name] = 0;
     }
 
-    var counterData = {
+    const counterData = {
 		    counterId: this.guid,
 		    requestId: this.reqid,
 		    page: this.page,
@@ -69,6 +69,7 @@ Counter.prototype.send = function(name, value) {
 		    index: this._indexes[name],
 		    additional: this.additional
 		},
+
 		self = this;
 
     this._countersBatchData.push(counterData);
@@ -80,7 +81,7 @@ Counter.prototype.send = function(name, value) {
         	self.sendBatchRequest();
         }, COUNTERS_BATCH_TIMEOUT);
     } else {
-        // sendBatchRequest();
+        self.sendBatchRequest();
     }
 };
 
@@ -99,3 +100,5 @@ Counter.prototype.sendBatchRequest = function() {
         xhr.send(data);
     }
 }
+
+export default Counter
