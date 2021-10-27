@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import {Fragment} from 'react';
+import Button from './components/Button';
+import {fetchCatImages} from './metrics/loadFromApi';
+import {fetchDogImages} from './metrics/loadFromApi';
+import {fetchRandomImages} from './metrics/loadFromApi';
+import {IMAGES_AMOUNT} from './constants';
+import ImageSection from './components/ImageSection';
 
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Fragment>
+      <div className="tablue">
+        <div className="tablue__btns">
+          <Button className="loadDogs" loadImages={fetchDogImages} textLabel={`Load ${IMAGES_AMOUNT} dogs images`}/>
+          <Button className="loadCats" loadImages={fetchCatImages} textLabel={`Load ${IMAGES_AMOUNT} cats images`}/>
+          <Button className="loadRandoms" loadImages={fetchRandomImages} textLabel={`Load ${IMAGES_AMOUNT} random images`}/>
+        </div>
+      </div>
+
+      <ImageSection/>
+    </Fragment>
+
+
   );
 }
 
