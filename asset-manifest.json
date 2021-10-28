@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/random-images/static/css/main.04ce262d.chunk.css",
+    "main.js": "/random-images/static/js/main.f534cbc9.chunk.js",
+    "main.js.map": "/random-images/static/js/main.f534cbc9.chunk.js.map",
+    "runtime-main.js": "/random-images/static/js/runtime-main.2bdea8a0.js",
+    "runtime-main.js.map": "/random-images/static/js/runtime-main.2bdea8a0.js.map",
+    "static/js/2.7ebbd891.chunk.js": "/random-images/static/js/2.7ebbd891.chunk.js",
+    "static/js/2.7ebbd891.chunk.js.map": "/random-images/static/js/2.7ebbd891.chunk.js.map",
+    "static/js/3.8f4a6f8f.chunk.js": "/random-images/static/js/3.8f4a6f8f.chunk.js",
+    "static/js/3.8f4a6f8f.chunk.js.map": "/random-images/static/js/3.8f4a6f8f.chunk.js.map",
+    "index.html": "/random-images/index.html",
+    "precache-manifest.3890634e76de68ad7851126503801aac.js": "/random-images/precache-manifest.3890634e76de68ad7851126503801aac.js",
+    "service-worker.js": "/random-images/service-worker.js",
+    "static/css/main.04ce262d.chunk.css.map": "/random-images/static/css/main.04ce262d.chunk.css.map",
+    "static/js/2.7ebbd891.chunk.js.LICENSE.txt": "/random-images/static/js/2.7ebbd891.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2bdea8a0.js",
+    "static/js/2.7ebbd891.chunk.js",
+    "static/css/main.04ce262d.chunk.css",
+    "static/js/main.f534cbc9.chunk.js"
+  ]
+}
