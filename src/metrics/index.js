@@ -1,12 +1,11 @@
 import Counter from "./send";
-import {GUID} from "../constants/constants";
+import {MAIN_PAGE, GUID, METRICS} from "../constants/constants";
 
 
 const metric_counter = new Counter();
-const pageName = "random_images";
 const requestId = String(Math.random()).substr(2, 12);
 
-metric_counter.init(GUID, requestId, pageName);
+metric_counter.init(GUID, requestId, MAIN_PAGE);
 
 const getBrowser = () => {
     if (/MSIE/.test(navigator.userAgent)) {
@@ -89,15 +88,15 @@ if (window.performance) {
 
 window.addEventListener("onLoadDogsImage", (event) => {
     const {loadingDuration} = event.detail
-    metric_counter.send("loadDogsImages", Math.round(loadingDuration))
+    metric_counter.send(METRICS.dogs, Math.round(loadingDuration))
 })
 
 window.addEventListener("onLoadCatsImage", (event) => {
     const {loadingDuration} = event.detail
-    metric_counter.send("loadCatsImages", Math.round(loadingDuration))
+    metric_counter.send(METRICS.cats, Math.round(loadingDuration))
 })
 
 window.addEventListener("onLoadRandomImages", (event) => {
     const {loadingDuration} = event.detail
-    metric_counter.send("loadRandomImages", Math.round(loadingDuration))
+    metric_counter.send(METRICS.randImages, Math.round(loadingDuration))
 })
