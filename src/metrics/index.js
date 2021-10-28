@@ -88,19 +88,16 @@ if (window.performance) {
 }
 
 window.addEventListener("onLoadDogsImage", (event) => {
-    const {timeStart} = event.detail
-    const duration = performance.now() - timeStart
-    metric_counter.send("loadDogsImages", Math.round(duration))
-}, false)
+    const {loadingDuration} = event.detail
+    metric_counter.send("loadDogsImages", Math.round(loadingDuration))
+})
 
 window.addEventListener("onLoadCatsImage", (event) => {
-    const {timeStart} = event.detail
-    const duration = performance.now() - timeStart
-    metric_counter.send("loadCatsImages", Math.round(duration))
-}, false)
+    const {loadingDuration} = event.detail
+    metric_counter.send("loadCatsImages", Math.round(loadingDuration))
+})
 
 window.addEventListener("onLoadRandomImages", (event) => {
-    const {timeStart} = event.detail
-    const duration = performance.now() - timeStart
-    metric_counter.send("loadRandomImages", Math.round(duration))
-}, false)
+    const {loadingDuration} = event.detail
+    metric_counter.send("loadRandomImages", Math.round(loadingDuration))
+})

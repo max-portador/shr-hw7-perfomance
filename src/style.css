@@ -21,24 +21,26 @@ code {
     monospace;
 }
 
-.tablue{
+.header{
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-content: center;
-  row-gap: 12px;
+  grid-template-columns: 1fr;
 }
 
-.tablue__btns {
+.header__btns {
   display: grid;
-  grid-column: 2/3;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 10px;
+  justify-content: center;
+  gap: 6px;
 }
 
 button{
-  display: grid;
-  width: 10vw;
-  line-height: 15px;
+  line-height: 28px;
+  font-weight: 600;
+  background: floralwhite;
+  border-radius: 4px;
+  font-size: 12px;
+  align-content: center;
+  width: 80vw;
+  padding: 0 20px;
 }
 
 img {
@@ -53,7 +55,7 @@ img {
 .images_section {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   gap: 12px;
 }
 
@@ -61,4 +63,34 @@ img {
   display: grid;
   position: relative;
   padding: 0 0 85% 0;
+}
+
+@media (min-width: 565px) {
+  .header{
+    grid-template-columns: 1fr auto 1fr;
+    align-content: center;
+    row-gap: 12px;
+  }
+
+  .header__btns {
+    grid-column: 2/3;
+    grid-template-columns: repeat(3, 1fr);
+
+  }
+
+  .images_section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  button{
+    justify-self: center;
+    width: max-content;
+  }
+
+}
+
+@media (min-width: 900px) {
+
+  .images_section {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
