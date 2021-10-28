@@ -35,12 +35,21 @@ code {
 button{
   line-height: 28px;
   font-weight: 600;
-  background: floralwhite;
   border-radius: 4px;
   font-size: 12px;
   align-content: center;
   width: 80vw;
   padding: 0 20px;
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  background-color: #555555; /* Green */
+  color: white;
 }
 
 img {
