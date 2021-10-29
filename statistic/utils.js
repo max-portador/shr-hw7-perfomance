@@ -147,7 +147,7 @@ function compareMetric(data, page, name, additional_option) {
         sectionsValues[sectionValue].push(item.value);
     });
     let result = {};
-    for (key in sectionsValues) {
+    for (let key in sectionsValues) {
         if (sectionsValues[key].length) {
             const values = sectionsValues[key];
             result[key] = {
