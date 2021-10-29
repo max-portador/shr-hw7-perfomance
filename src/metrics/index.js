@@ -41,7 +41,7 @@ const getPlatform = () => {
 };
 
 const getConnectionType = () => {
-    if (navigator.connection["effectiveType"]) {
+    if ("effectiveType" in navigator.connection) {
     return navigator.connection["effectiveType"]
     // return string? for example "4g", don`t work in Safari
     }
