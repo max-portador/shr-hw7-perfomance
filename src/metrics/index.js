@@ -79,13 +79,19 @@ metric_counter.setAdditionalParams({
 });
 
 if (window.performance) {
-    const [navigation] = window.performance.getEntriesByType("navigation");
+    let [navigation] = window.performance.getEntriesByType("navigation");
+    if (navigation) {
+        navigation =  window.performance["timing"]
+    }
 
+    if (navigation) {
     const connect = Math.round(navigation.connectEnd - navigation.connectStart);
     metric_counter.send("connect", connect);
 
     const reqRes = Math.round(navigation.responseEnd - navigation.requestStart);
     metric_counter.send("ttfb", reqRes);
+
+    }
 
     setTimeout(function () {
         let performance = window.performance;
