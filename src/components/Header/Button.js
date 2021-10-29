@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from "react"
+import React, {Fragment} from "react"
 import {useDispatch} from 'react-redux';
 import {ADD_IMAGE} from '../../redux/types';
 
