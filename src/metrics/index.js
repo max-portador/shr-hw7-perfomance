@@ -41,20 +41,32 @@ const getPlatform = () => {
 };
 
 const getConnectionType = () => {
+    if (navigator.connection.effectiveType) {
     return navigator.connection.effectiveType
-    // return string? for example "4g"
+    // return string? for example "4g", don`t work in Safari
+    }
+    else return "unsupported option"
 }
 
 const getLanguage = () => {
-    return navigator.language
+    if (navigator.language) {
+        return navigator.language
+    }
+    else return "unsupported option"
 }
 
 const getOs = () => {
-    return navigator.platform
+    if (navigator.platform) {
+        return navigator.platform
+    }
+    else return "unsupported option"
 }
 
 const getDeviceMemory = () => {
-    return navigator.deviceMemory
+    if (navigator.deviceMemory) {
+        return navigator.deviceMemory
+    }
+    else return "unsupported option"
 }
 
 metric_counter.setAdditionalParams({
