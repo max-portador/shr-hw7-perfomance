@@ -1,3 +1,6 @@
+
+
+
 // подсчет процентилей
 function quantile(arr, q) {
     const sorted = arr.sort((a, b) => a - b);
@@ -16,15 +19,15 @@ function quantile(arr, q) {
 function prepareData(result) {
     return result.data.map((item) => {
         item.date = item.timestamp.split("T")[0];
-
         return item;
     });
 }
 
 // показать сессию пользователя
 function showSession(data, page, session) {
-    console.group(`\n   Метрика сессии '${session}'`);
-    const sampleData = data.filter((item) => item.page === page && item.requestId === session);
+    console.group(`\n   Метрика сессии '${session}'`)
+    const sampleData = data.filter((item) => item.page === page
+        && item.requestId === session)
     if (sampleData.length) {
         const { browser, platform } = sampleData[0].additional;
         const { date } = sampleData[0];
@@ -32,11 +35,37 @@ function showSession(data, page, session) {
             browser,
             platform,
             date,
-        };
-        sampleData.map((item) => {
+        }
+        // Если в сессии было несколько кликов по одной кнопке
+        // то все значения метрики упаковываем в массив
+        sampleData.forEach((item) => {
             const { name, value } = item;
-            result[name] = value;
-        });
+            const oldValue = result[name]
+
+            if (!oldValue) {
+                result[name] = value
+            } else {
+                if (typeof oldValue === "number") {
+                    result[name] =  [oldValue, value]
+                }
+                else {
+                    result[name] = [...oldValue, value]
+                }
+            }
+        })
+
+        // если у нас в result есть массивы
+        // то заменяем их на среднее значение
+        Object.entries(result).forEach( entry => {
+            let [key, value] = entry
+            if (Array.isArray(value)) {
+
+                const sum = value.reduce((a, b) => a + b, 0);
+                const avg = (sum / value.length);
+
+                result[key] = Math.round(avg)
+            }
+        })
         console.table(result);
     } else {
         console.error(`Отсутствуют данные о сессии ${session}`);

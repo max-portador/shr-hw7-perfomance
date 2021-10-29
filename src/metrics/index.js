@@ -80,6 +80,8 @@ metric_counter.setAdditionalParams({
 
 if (window.performance) {
     let [navigation] = window.performance.getEntriesByType("navigation");
+
+    // API Safari отличается от остальных, значения вынесены из navigation в объект timing
     if (navigation) {
         navigation =  window.performance["timing"]
     }
