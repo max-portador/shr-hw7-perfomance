@@ -15,7 +15,7 @@ const example_date = "2021-10-29"
 const example_period = ["2021-10-28", "2021-11-11"]
 const example_requestId = "067178463181"
 
-//получение метрикиN
+//получение метрики
 module.exports = async (req, res) => {
     try {
         const axiosData = await axios.get(

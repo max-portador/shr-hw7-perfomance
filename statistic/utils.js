@@ -1,6 +1,3 @@
-
-
-
 // подсчет процентилей
 function quantile(arr, q) {
     const sorted = arr.sort((a, b) => a - b);
@@ -15,13 +12,45 @@ function quantile(arr, q) {
     }
 }
 
-// Обработка даты
-function prepareData(result) {
+// Обработка даты, выделяет из timestamp дату
+function prepareDate(result) {
     return result.data.map((item) => {
         item.date = item.timestamp.split("T")[0];
         return item;
     });
 }
+
+
+function sameKeyValuesToArray(resultObj, arrayOfObjects){
+    arrayOfObjects.forEach((item) => {
+        const { name, value } = item;
+        const oldValue = resultObj[name]
+
+        if (!oldValue) {
+            resultObj[name] = value
+        } else {
+            if (typeof oldValue === "number") {
+                resultObj[name] =  [oldValue, value]
+            } else {
+                resultObj[name] = [...oldValue, value]
+            }
+        }
+    })
+}
+
+function arrayValuesToAverage(resultObj){
+    Object.entries(resultObj).forEach( entry => {
+        let [key, value] = entry
+        if (Array.isArray(value)) {
+
+            const sum = value.reduce((a, b) => a + b, 0);
+            const avg = (sum / value.length);
+
+            resultObj[key] = Math.round(avg)
+        }
+    })
+}
+
 
 // показать сессию пользователя
 function showSession(data, page, session) {
@@ -38,34 +67,12 @@ function showSession(data, page, session) {
         }
         // Если в сессии было несколько кликов по одной кнопке
         // то все значения метрики упаковываем в массив
-        sampleData.forEach((item) => {
-            const { name, value } = item;
-            const oldValue = result[name]
-
-            if (!oldValue) {
-                result[name] = value
-            } else {
-                if (typeof oldValue === "number") {
-                    result[name] =  [oldValue, value]
-                }
-                else {
-                    result[name] = [...oldValue, value]
-                }
-            }
-        })
+        sameKeyValuesToArray(result, sampleData)
 
         // если у нас в result есть массивы
         // то заменяем их на среднее значение
-        Object.entries(result).forEach( entry => {
-            let [key, value] = entry
-            if (Array.isArray(value)) {
+        arrayValuesToAverage(result)
 
-                const sum = value.reduce((a, b) => a + b, 0);
-                const avg = (sum / value.length);
-
-                result[key] = Math.round(avg)
-            }
-        })
         console.table(result);
     } else {
         console.error(`Отсутствуют данные о сессии ${session}`);
@@ -169,4 +176,4 @@ function compareMetric(data, page, name, additional_option) {
     console.groupEnd();
 }
 
-module.exports = { prepareData, showSession, calcMetricByDate, showMetricByPeriod, compareMetric };
+module.exports = { prepareData: prepareDate, showSession, calcMetricByDate, showMetricByPeriod, compareMetric };
